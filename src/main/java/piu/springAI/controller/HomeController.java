@@ -40,4 +40,9 @@ public class HomeController {
 	public String fewShotPrompt() {
 		return "few-shot-prompt";
 	}
+
+	@GetMapping("/role-assignment")
+	public String roleAssignment() {
+		return "role-assignment";
+	}
 }

@@ -1,4 +1,4 @@
-package piu.springAI.controller;
+package piu.springAI.controller.chapter3;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,23 +8,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import piu.springAI.service.FewShotPromptService;
+import piu.springAI.service.chapter3.RoleAssignmentPromptService;
+import reactor.core.publisher.Flux;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/ai")
-public class FewShotPromptController {
+public class RoleAssignmentPromptController {
 
-	private final FewShotPromptService fewShotPromptService;
+	private final RoleAssignmentPromptService promptService;
 
 	@PostMapping(
-		value = "/few-shot-prompt",
+		value = "/role-assignment",
 		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
-		produces = MediaType.APPLICATION_JSON_VALUE
+		produces = MediaType.APPLICATION_NDJSON_VALUE
 	)
-	public String fewShotPrompt(@RequestParam("order") String order) {
-		String json = fewShotPromptService.fewShotPrompt(order);
-		return json;
+	public Flux<String> roleAssignment(
+		@RequestParam("requirements") String requirements
+	) {
+		Flux<String> stringFlux = promptService.roleAssignment(requirements);
+		return stringFlux;
 	}
 }
