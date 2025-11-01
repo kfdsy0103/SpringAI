@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import piu.springAI.service.AiPromptTemplateService;
 import piu.springAI.service.AiService;
-import piu.springAI.service.AiServicePromptTemplate;
 import reactor.core.publisher.Flux;
 
 @Slf4j
@@ -19,7 +19,7 @@ import reactor.core.publisher.Flux;
 public class AiController {
 
 	private final AiService aiService;
-	private final AiServicePromptTemplate aiServicePromptTemplate;
+	private final AiPromptTemplateService aiServicePromptTemplate;
 
 	@PostMapping(
 		value = "/chat-model",

@@ -13,7 +13,7 @@ import reactor.core.publisher.Flux;
 
 @Service
 @RequiredArgsConstructor
-public class AiServicePromptTemplate {
+public class AiPromptTemplateService {
 
 	private final ChatClient chatClient;
 

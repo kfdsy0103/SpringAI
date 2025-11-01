@@ -26,4 +26,8 @@ public class HomeController {
 		return "chat-prompt-template";
 	}
 
+	@GetMapping("/chat-multi-messages")
+	public String chatMultiMessageTemplate() {
+		return "chat-multi-messages";
+	}
 }
