@@ -1,4 +1,4 @@
-package piu.springAI.controller;
+package piu.springAI.controller.chapter3;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import piu.springAI.service.AiDefaultService;
+import piu.springAI.service.chapter3.AiDefaultService;
 import reactor.core.publisher.Flux;
 
 @Slf4j

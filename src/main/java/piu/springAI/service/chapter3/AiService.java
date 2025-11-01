@@ -1,4 +1,4 @@
-package piu.springAI.service;
+package piu.springAI.service.chapter3;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatModel;

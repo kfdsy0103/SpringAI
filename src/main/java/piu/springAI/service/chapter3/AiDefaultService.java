@@ -1,16 +1,14 @@
-package piu.springAI.service;
+package piu.springAI.service.chapter3;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class AiDefaultService {
 
 	private final ChatClient chatClient;

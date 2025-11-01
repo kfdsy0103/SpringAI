@@ -30,4 +30,9 @@ public class HomeController {
 	public String chatMultiMessageTemplate() {
 		return "chat-multi-messages";
 	}
+
+	@GetMapping("/zero-shot-prompt")
+	public String zeroShotPrompt() {
+		return "zero-shot-prompt";
+	}
 }
