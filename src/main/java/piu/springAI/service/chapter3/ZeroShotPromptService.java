@@ -1,4 +1,4 @@
-package piu.springAI.service;
+package piu.springAI.service.chapter3;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class AiZeroShotPromptService {
+public class ZeroShotPromptService {
 
 	private final ChatClient chatClient;
 
@@ -23,7 +23,7 @@ public class AiZeroShotPromptService {
 			""")
 		.build();
 
-	public AiZeroShotPromptService(ChatClient.Builder clientBuilder) {
+	public ZeroShotPromptService(ChatClient.Builder clientBuilder) {
 		this.chatClient = clientBuilder
 			.defaultOptions(
 				ChatOptions.builder()

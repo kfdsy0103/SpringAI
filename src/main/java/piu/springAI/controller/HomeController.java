@@ -35,4 +35,9 @@ public class HomeController {
 	public String zeroShotPrompt() {
 		return "zero-shot-prompt";
 	}
+
+	@GetMapping("/few-shot-prompt")
+	public String fewShotPrompt() {
+		return "few-shot-prompt";
+	}
 }

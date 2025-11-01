@@ -6,25 +6,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import piu.springAI.service.AiZeroShotPromptService;
+import piu.springAI.service.FewShotPromptService;
 
 @Slf4j
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/ai")
-public class AiZeroShotPromptController {
+public class FewShotPromptController {
 
-	private final AiZeroShotPromptService aiZeroShotPromptService;
+	private final FewShotPromptService fewShotPromptService;
 
 	@PostMapping(
-		value = "/zero-shot-prompt",
+		value = "/few-shot-prompt",
 		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
-		produces = MediaType.TEXT_PLAIN_VALUE
+		produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public String zeroShotPrompt(@RequestParam("review") String review) {
-		String reviewSentiment = aiZeroShotPromptService.zeroShotPrompt(review);
-		return reviewSentiment;
+	public String fewShotPrompt(@RequestParam("order") String order) {
+		String json = fewShotPromptService.fewShotPrompt(order);
+		return json;
 	}
 }
