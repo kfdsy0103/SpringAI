@@ -20,4 +20,10 @@ public class HomeController {
 	public String chatModelStream() {
 		return "chat-model-stream";
 	}
+
+	@GetMapping("/chat-prompt-template")
+	public String chatPromptTemplate() {
+		return "chat-prompt-template";
+	}
+
 }
