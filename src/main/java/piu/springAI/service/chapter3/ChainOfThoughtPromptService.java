@@ -1,4 +1,4 @@
-package piu.springAI.service;
+package piu.springAI.service.chapter3;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class ChainOfThoughtPromptService {
 				""".formatted(question))
 			.stream()
 			.content();
-		
+
 		return response;
 	}
 }
