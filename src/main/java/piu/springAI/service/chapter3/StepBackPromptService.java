@@ -1,4 +1,4 @@
-package piu.springAI.service;
+package piu.springAI.service.chapter3;
 
 import java.util.List;
 

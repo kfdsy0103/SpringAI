@@ -1,4 +1,4 @@
-package piu.springAI.controller;
+package piu.springAI.controller.chapter3;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import piu.springAI.service.StepBackPromptService;
+import piu.springAI.service.chapter3.StepBackPromptService;
 
 @Slf4j
 @RestController
