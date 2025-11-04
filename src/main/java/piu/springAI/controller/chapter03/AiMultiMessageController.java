@@ -1,4 +1,4 @@
-package piu.springAI.controller.chapter3;
+package piu.springAI.controller.chapter03;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import piu.springAI.service.chapter3.AiMultiMessageService;
+import piu.springAI.service.chapter03.AiMultiMessageService;
 
 @Slf4j
 @RestController

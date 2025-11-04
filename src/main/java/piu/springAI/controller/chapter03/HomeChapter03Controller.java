@@ -1,10 +1,10 @@
-package piu.springAI.controller;
+package piu.springAI.controller.chapter03;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HomeController {
+public class HomeChapter03Controller {
 
 	@GetMapping("/")
 	public String home() {
@@ -60,4 +60,5 @@ public class HomeController {
 	public String selfConsistency() {
 		return "chapter03/self-consistency";
 	}
+
 }

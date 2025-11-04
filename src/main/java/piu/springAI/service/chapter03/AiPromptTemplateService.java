@@ -1,4 +1,4 @@
-package piu.springAI.service.chapter3;
+package piu.springAI.service.chapter03;
 
 import java.util.Map;
 

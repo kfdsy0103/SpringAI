@@ -1,4 +1,4 @@
-package piu.springAI.controller.chapter3;
+package piu.springAI.controller.chapter03;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,24 +8,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import piu.springAI.service.chapter3.AiDefaultService;
-import reactor.core.publisher.Flux;
+import piu.springAI.service.chapter03.ZeroShotPromptService;
 
 @Slf4j
 @RestController
 @AllArgsConstructor
 @RequestMapping("/ai")
-public class AiDefaultController {
+public class ZeroShotPromptController {
 
-	private final AiDefaultService aiDefaultService;
+	private final ZeroShotPromptService aiZeroShotPromptService;
 
 	@PostMapping(
-		value = "/default-method",
+		value = "/zero-shot-prompt",
 		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
-		produces = MediaType.APPLICATION_NDJSON_VALUE
+		produces = MediaType.TEXT_PLAIN_VALUE
 	)
-	public Flux<String> defaultMethod(@RequestParam("question") String question) {
-		Flux<String> response = aiDefaultService.defaultMethod(question);
-		return response;
+	public String zeroShotPrompt(@RequestParam("review") String review) {
+		String reviewSentiment = aiZeroShotPromptService.zeroShotPrompt(review);
+		return reviewSentiment;
 	}
 }

@@ -1,4 +1,4 @@
-package piu.springAI.controller.chapter3;
+package piu.springAI.controller.chapter03;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,23 +8,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import piu.springAI.service.chapter3.SelfConsistencyService;
+import piu.springAI.service.chapter03.RoleAssignmentPromptService;
+import reactor.core.publisher.Flux;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/ai")
-public class SelfConsistencyController {
+public class RoleAssignmentPromptController {
 
-	private final SelfConsistencyService selfConsistencyService;
+	private final RoleAssignmentPromptService promptService;
 
 	@PostMapping(
-		value = "/self-consistency",
+		value = "/role-assignment",
 		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
-		produces = MediaType.TEXT_PLAIN_VALUE
+		produces = MediaType.APPLICATION_NDJSON_VALUE
 	)
-	public String selfConsistency(@RequestParam("content") String content) {
-		String answer = selfConsistencyService.selfConsistency(content);
-		return answer;
+	public Flux<String> roleAssignment(
+		@RequestParam("requirements") String requirements
+	) {
+		Flux<String> stringFlux = promptService.roleAssignment(requirements);
+		return stringFlux;
 	}
 }
