@@ -8,56 +8,56 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home() {
-		return "home";
+		return "chapter03/home";
 	}
 
 	@GetMapping("/chat-model")
 	public String chatModel() {
-		return "chat-model";
+		return "chapter03/chat-model";
 	}
 
 	@GetMapping("/chat-model-stream")
 	public String chatModelStream() {
-		return "chat-model-stream";
+		return "chapter03/chat-model-stream";
 	}
 
 	@GetMapping("/chat-prompt-template")
 	public String chatPromptTemplate() {
-		return "chat-prompt-template";
+		return "chapter03/chat-prompt-template";
 	}
 
 	@GetMapping("/chat-multi-messages")
 	public String chatMultiMessageTemplate() {
-		return "chat-multi-messages";
+		return "chapter03/chat-multi-messages";
 	}
 
 	@GetMapping("/zero-shot-prompt")
 	public String zeroShotPrompt() {
-		return "zero-shot-prompt";
+		return "chapter03/zero-shot-prompt";
 	}
 
 	@GetMapping("/few-shot-prompt")
 	public String fewShotPrompt() {
-		return "few-shot-prompt";
+		return "chapter03/few-shot-prompt";
 	}
 
 	@GetMapping("/role-assignment")
 	public String roleAssignment() {
-		return "role-assignment";
+		return "chapter03/role-assignment";
 	}
 
 	@GetMapping("/step-back-prompt")
 	public String stepBackPrompt() {
-		return "step-back-prompt";
+		return "chapter03/step-back-prompt";
 	}
 
 	@GetMapping("/chain-of-thought")
 	public String chainOfThought() {
-		return "chain-of-thought";
+		return "chapter03/chain-of-thought";
 	}
 
 	@GetMapping("/self-consistency")
 	public String selfConsistency() {
-		return "self-consistency";
+		return "chapter03/self-consistency";
 	}
 }

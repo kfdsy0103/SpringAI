@@ -1,4 +1,4 @@
-package piu.springAI.service;
+package piu.springAI.service.chapter3;
 
 import java.util.Map;
 
@@ -50,7 +50,7 @@ public class SelfConsistencyService {
 				notImportantCount++;
 			}
 		}
-		
+
 		// 최종 결정
 		String finalClassification = importantCount > notImportantCount ? "중요함" : "중요하지 않음";
 		return finalClassification;

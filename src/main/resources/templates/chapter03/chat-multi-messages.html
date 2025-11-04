@@ -23,14 +23,13 @@
                 springai.setSpinner("spinner", true);
 
                 // AJAX 요청하고 응답받기
-                const language = document.getElementById("language").value;
-                const response = await fetch('/ai/chat-prompt-template', {
+                const response = await fetch('/ai/multi-messages', {
                     method: "post",
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
-                        'Accept': 'application/x-ndjson' //라인으로 구분된 청크 데이터
+                        'Accept': 'text/plain'
                     },
-                    body: new URLSearchParams({"statement": question, language})
+                    body: new URLSearchParams({question})
                 });
 
                 // AI 모델 답변이 들어갈 위치를 대화 패널에 추가
@@ -51,7 +50,7 @@
 <body>
 <div class="d-flex flex-column vh-100">
     <div id="headPanel" class="navbar justify-content-between">
-        <a href="/" class="navbar-brand ps-2">
+        <a href="/static" class="navbar-brand ps-2">
             <img src="/image/spring_ai_logo_with_text.svg" width="200"/>
         </a>
         <div id="spinner" class="spinner-border text-success d-none me-3" role="status">
@@ -72,17 +71,8 @@
 
     <div id="inputPanel" class="bg-secondary-subtle">
         <div class="input-group p-2">
-            <span class="input-group-text">언어</span>
-            <select id="language" class="form-control">
-                <option value="독일어">독일어</option>
-                <option value="중국어">중국어</option>
-                <option value="일본어">일본어</option>
-                <option value="영어" selected>영어</option>
-            </select>
-        </div>
-        <div class="input-group p-2">
             <span class="input-group-text">질문</span>
-            <textarea id="question" class="form-control">Spring AI에 대해 100자 이내로 설명해줘.</textarea>
+            <textarea id="question" class="form-control">지금부터 너의 이름을 자비스라고 부를게.</textarea>
             <span class="input-group-text">
           <button type="button" class="btn btn-primary" onclick="handleSubmit()">제출</button>
         </span>
