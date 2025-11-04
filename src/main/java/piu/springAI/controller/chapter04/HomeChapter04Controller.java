@@ -25,4 +25,9 @@ public class HomeChapter04Controller {
 	public String mapOutputConverter() {
 		return "chapter04/map-output-converter";
 	}
+
+	@GetMapping("/system-message")
+	public String systemMessage() {
+		return "chapter04/system-message";
+	}
 }

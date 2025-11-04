@@ -4,10 +4,13 @@ server:
 spring:
   servlet:
     # 파일 업로드
-    multipart: 
+    multipart:
       enabled: true
       max-file-size: 10MB
       max-request-size: 15MB
+    encoding:
+      charset: UTF-8
+      force: true
   output:
     ansi:
       # 터미널에 컬러 출력
@@ -22,6 +25,7 @@ spring:
     openai:
       # API 키
       api-key: ${OPENAI_API_KEY}
+  mandatory-file-encoding: UTF-8
 
 logging:
   pattern:
