@@ -20,4 +20,9 @@ public class HomeChapter04Controller {
 	public String genericBeanOutputConverter() {
 		return "chapter04/generic-bean-output-converter";
 	}
+
+	@GetMapping("/map-output-converter")
+	public String mapOutputConverter() {
+		return "chapter04/map-output-converter";
+	}
 }
