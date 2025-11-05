@@ -10,4 +10,9 @@ public class HomeChapter07Controller {
 	public String advisorChain() {
 		return "chapter07/advisor-chain";
 	}
+
+	@GetMapping("/advisor-context")
+	public String advisorContext() {
+		return "chapter07/advisor-context";
+	}
 }
