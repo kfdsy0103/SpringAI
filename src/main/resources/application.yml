@@ -15,6 +15,11 @@ spring:
     ansi:
       # 터미널에 컬러 출력
       enabled: ALWAYS
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+
   web:
     resources:
       cache:
@@ -25,6 +30,9 @@ spring:
     openai:
       # API 키
       api-key: ${OPENAI_API_KEY}
+    vectorstore:
+      pgvector:
+        initialize-schema: true
   mandatory-file-encoding: UTF-8
 
 logging:
