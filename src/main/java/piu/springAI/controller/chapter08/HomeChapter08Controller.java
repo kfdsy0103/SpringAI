@@ -10,4 +10,9 @@ public class HomeChapter08Controller {
 	public String textEmbedding() {
 		return "chapter08/text-embedding";
 	}
+
+	@GetMapping("/add-document")
+	public String addDocument() {
+		return "chapter08/add-document";
+	}
 }

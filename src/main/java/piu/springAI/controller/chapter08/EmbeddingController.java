@@ -27,4 +27,14 @@ public class EmbeddingController {
 		embeddingService.textEmbedding(question);
 		return "콘솔 출력을 확인하세요.";
 	}
+
+	@PostMapping(
+		value = "/add-document",
+		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+		produces = MediaType.TEXT_PLAIN_VALUE
+	)
+	public String addDocument(@RequestParam("question") String question) {
+		embeddingService.addDocument();
+		return "벡터 DB에 저장되었습니다.";
+	}
 }
