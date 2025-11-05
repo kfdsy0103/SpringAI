@@ -20,4 +20,9 @@ public class HomeChapter07Controller {
 	public String advisorLogging() {
 		return "chapter07/advisor-logging";
 	}
+
+	@GetMapping("/advisor-safe-guard")
+	public String advisorSafeGuard() {
+		return "chapter07/advisor-safe-guard";
+	}
 }
