@@ -30,6 +30,12 @@ spring:
     openai:
       # API 키
       api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o-mini
+      embedding:
+        options:
+          model: text-embedding-3-small
     vectorstore:
       pgvector:
         initialize-schema: true
