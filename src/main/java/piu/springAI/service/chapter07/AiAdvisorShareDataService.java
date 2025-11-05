@@ -5,8 +5,8 @@ import org.springframework.core.Ordered;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import piu.springAI.service.chapter07.advisor.AdvisorStream;
-import piu.springAI.service.chapter07.advisor.MaxCharLengthAdvisor;
+import piu.springAI.service.chapter07.customAdvisor.AdvisorStream;
+import piu.springAI.service.chapter07.customAdvisor.MaxCharLengthAdvisor;
 import reactor.core.publisher.Flux;
 
 @Service

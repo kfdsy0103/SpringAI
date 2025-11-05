@@ -1,4 +1,4 @@
-package piu.springAI.service.chapter07.advisor;
+package piu.springAI.service.chapter07.customAdvisor;
 
 import org.springframework.ai.chat.client.ChatClientRequest;
 import org.springframework.ai.chat.client.ChatClientResponse;

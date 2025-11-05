@@ -1,4 +1,4 @@
-package piu.springAI.service.chapter07.advisor;
+package piu.springAI.service.chapter07.customAdvisor;
 
 import org.springframework.ai.chat.client.ChatClientRequest;
 import org.springframework.ai.chat.client.ChatClientResponse;
@@ -8,9 +8,8 @@ import org.springframework.core.Ordered;
 
 import lombok.extern.slf4j.Slf4j;
 
-// Spring MVC 환경에서는 CallAdvisor를 구현해야함
 @Slf4j
-public class AdvisorA implements CallAdvisor {
+public class AdvisorB implements CallAdvisor {
 
 	@Override
 	public ChatClientResponse adviseCall(ChatClientRequest chatClientRequest, CallAdvisorChain callAdvisorChain) {
@@ -27,6 +26,6 @@ public class AdvisorA implements CallAdvisor {
 
 	@Override
 	public int getOrder() {
-		return Ordered.HIGHEST_PRECEDENCE + 1;
+		return Ordered.HIGHEST_PRECEDENCE + 2;
 	}
 }

@@ -15,4 +15,9 @@ public class HomeChapter07Controller {
 	public String advisorContext() {
 		return "chapter07/advisor-context";
 	}
+
+	@GetMapping("/advisor-logging")
+	public String advisorLogging() {
+		return "chapter07/advisor-logging";
+	}
 }
