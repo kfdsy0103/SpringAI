@@ -70,4 +70,8 @@ public class EmbeddingService {
 		);
 		return documents;
 	}
+
+	public void deleteDocument() {
+		vectorStore.delete("source == '헌법' && year >= 1987");
+	}
 }

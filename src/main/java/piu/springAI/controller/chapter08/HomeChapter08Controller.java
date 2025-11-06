@@ -25,4 +25,9 @@ public class HomeChapter08Controller {
 	public String searchDocument2() {
 		return "chapter08/search-document-2";
 	}
+
+	@GetMapping("/delete-document")
+	public String deleteDocument() {
+		return "chapter08/delete-document";
+	}
 }
