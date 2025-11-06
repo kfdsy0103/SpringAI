@@ -50,4 +50,4 @@ logging:
         ai:
           chat:
             client:
-              advisor: DEBUG
+              advisor: DEBUG # SimpleLoggerAdvisor
