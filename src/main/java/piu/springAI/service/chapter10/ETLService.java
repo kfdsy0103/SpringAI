@@ -1,6 +1,7 @@
 package piu.springAI.service.chapter10;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 
@@ -8,11 +9,15 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.model.transformer.KeywordMetadataEnricher;
 import org.springframework.ai.reader.TextReader;
+import org.springframework.ai.reader.jsoup.JsoupDocumentReader;
+import org.springframework.ai.reader.jsoup.config.JsoupDocumentReaderConfig;
 import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
 import org.springframework.ai.reader.tika.TikaDocumentReader;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -94,7 +99,33 @@ public class ETLService {
 		return transformedDocuments;
 	}
 
-	// 
+	public String etlFromHtml(String title, String author, String url) throws MalformedURLException {
+		Resource resource = new UrlResource(url);
 
+		// 1. Extract
+		JsoupDocumentReader reader = new JsoupDocumentReader(
+			resource,
+			JsoupDocumentReaderConfig.builder()
+				.charset("UTF-8") // 인코딩 정보
+				.selector("#content") // 선택자로 읽을 텍스트 위치 지정
+				.additionalMetadata(Map.of(
+					"title", title,
+					"author", author,
+					"url", url
+				))
+				.build()
+		);
+		List<Document> documents = reader.read();
+		log.info("추출된 Document 수: {} 개", documents.size());
+
+		// 2. Transform
+		TokenTextSplitter transformer = new TokenTextSplitter();
+		List<Document> transformedDocuments = transformer.apply(documents);
+		log.info("변환된 Document 수: {} 개", transformedDocuments.size());
+
+		// 3. Load
+		vectorStore.add(transformedDocuments);
+
+		return "HTML에서 추출-변환-적재 완료하였습니다.";
+	}
 }
-

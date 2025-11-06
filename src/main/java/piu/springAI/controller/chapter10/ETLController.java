@@ -1,6 +1,7 @@
 package piu.springAI.controller.chapter10;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,5 +34,19 @@ public class ETLController {
 	) throws IOException {
 		String result = etlService.etlFromFile(title, author, attachFile);
 		return result;
+	}
+
+	@PostMapping(
+		value = "/html-etl",
+		consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+		produces = MediaType.TEXT_PLAIN_VALUE
+	)
+	public String htmlEtl(
+		@RequestParam("title") String title,
+		@RequestParam("author") String author,
+		@RequestParam("url") String url
+	) throws MalformedURLException {
+		String result = etlService.etlFromHtml(title, author, url);
+		return url;
 	}
 }

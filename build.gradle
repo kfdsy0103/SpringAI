@@ -53,6 +53,9 @@ dependencies {
     // ETL - Text, PDF, Word
     implementation 'org.springframework.ai:spring-ai-pdf-document-reader' // pdf
     implementation 'org.springframework.ai:spring-ai-tika-document-reader' // doc/docx, ppt/pptx
+
+    // HTML
+    implementation 'org.springframework.ai:spring-ai-jsoup-document-reader' // HTML
 }
 
 dependencyManagement {
