@@ -11,11 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class ChatMemoryService {
+public class InMemoryService {
 
 	private final ChatClient chatClient;
 
-	public ChatMemoryService(ChatClient.Builder builder, ChatMemory chatMemory) {
+	public InMemoryService(ChatClient.Builder builder, ChatMemory chatMemory) {
 		this.chatClient = builder
 			.defaultAdvisors(
 				MessageChatMemoryAdvisor.builder(chatMemory).build(),

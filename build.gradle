@@ -43,6 +43,9 @@ dependencies {
 
     // PGVector
     implementation 'org.springframework.ai:spring-ai-starter-vector-store-pgvector'
+
+    // VectorStore Advisor
+    implementation 'org.springframework.ai:spring-ai-advisors-vector-store'
 }
 
 dependencyManagement {
