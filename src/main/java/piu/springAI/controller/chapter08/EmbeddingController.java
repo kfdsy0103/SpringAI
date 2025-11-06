@@ -59,4 +59,23 @@ public class EmbeddingController {
 		}
 		return text;
 	}
+
+	@PostMapping(
+		value = "/search-document-2",
+		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+		produces = MediaType.TEXT_PLAIN_VALUE
+	)
+	public String searchDocument2(@RequestParam("question") String question) {
+		List<Document> documents = embeddingService.searchDocument2(question);
+
+		String text = "";
+		for (Document document : documents) {
+			text += "<div class='mb-2'>";
+			text += "  <span class='me-2'>유사도 점수: %f,</span>".formatted(document.getScore());
+			text += "  <span>%s(%s)</span>".formatted(document.getText(),
+				document.getMetadata().get("year"));
+			text += "</div>";
+		}
+		return text;
+	}
 }

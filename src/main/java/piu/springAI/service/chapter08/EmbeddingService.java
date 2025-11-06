@@ -8,6 +8,7 @@ import org.springframework.ai.embedding.Embedding;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.embedding.EmbeddingResponse;
 import org.springframework.ai.embedding.EmbeddingResponseMetadata;
+import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +56,18 @@ public class EmbeddingService {
 
 	public List<Document> searchDocument1(String question) {
 		List<Document> documents = vectorStore.similaritySearch(question);
+		return documents;
+	}
+
+	public List<Document> searchDocument2(String question) {
+		List<Document> documents = vectorStore.similaritySearch(
+			SearchRequest.builder()
+				.query(question) // 쿼리 내용
+				.topK(1) // 최상위 1개만 가져옴
+				.similarityThreshold(0.4) // 유사성 점수가 0.4 이상
+				.filterExpression("source == '헌법' && year >= 1987") // 메타데이터 조건
+				.build()
+		);
 		return documents;
 	}
 }
