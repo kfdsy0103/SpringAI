@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.model.transformer.KeywordMetadataEnricher;
+import org.springframework.ai.reader.JsonReader;
 import org.springframework.ai.reader.TextReader;
 import org.springframework.ai.reader.jsoup.JsoupDocumentReader;
 import org.springframework.ai.reader.jsoup.config.JsoupDocumentReaderConfig;
@@ -127,5 +128,31 @@ public class ETLService {
 		vectorStore.add(transformedDocuments);
 
 		return "HTML에서 추출-변환-적재 완료하였습니다.";
+	}
+
+	public String etlFromJson(String url) throws MalformedURLException {
+
+		// 1. Extract
+		Resource resource = new UrlResource(url);
+		JsonReader jsonReader = new JsonReader(
+			resource,
+			jsonMap -> Map.of(
+				"title", jsonMap.get("title"),
+				"author", jsonMap.get("author"),
+				"url", url
+			), "date", "content"
+		);
+		List<Document> documents = jsonReader.read();
+		log.info("추출된 Document 수: {} 개", documents.size());
+
+		// 2. Transform
+		TokenTextSplitter tokenTextSplitter = new TokenTextSplitter();
+		List<Document> transformedDocuments = tokenTextSplitter.apply(documents);
+		log.info("변환된 Document 수: {} 개", transformedDocuments.size());
+
+		// 3. Load
+		vectorStore.add(transformedDocuments);
+
+		return "JSON에서 추출-변환-적재 완료했습니다.";
 	}
 }
