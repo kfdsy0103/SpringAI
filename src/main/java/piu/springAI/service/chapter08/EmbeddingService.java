@@ -52,4 +52,9 @@ public class EmbeddingService {
 		// 벡터 DB 저장
 		vectorStore.add(documents);
 	}
+
+	public List<Document> searchDocument1(String question) {
+		List<Document> documents = vectorStore.similaritySearch(question);
+		return documents;
+	}
 }

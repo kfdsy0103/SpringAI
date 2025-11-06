@@ -15,4 +15,9 @@ public class HomeChapter08Controller {
 	public String addDocument() {
 		return "chapter08/add-document";
 	}
+
+	@GetMapping("/search-document-1")
+	public String searchDocument1() {
+		return "chapter08/search-document-1";
+	}
 }
