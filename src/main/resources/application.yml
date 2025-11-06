@@ -36,9 +36,14 @@ spring:
       embedding:
         options:
           model: text-embedding-3-small
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always # 스키마 초기화 always
     vectorstore:
       pgvector:
-        initialize-schema: false
+        initialize-schema: false # 없으면 생성 있으면 no act
   mandatory-file-encoding: UTF-8
 
 logging:

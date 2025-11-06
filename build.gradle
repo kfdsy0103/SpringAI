@@ -46,6 +46,9 @@ dependencies {
 
     // VectorStore Advisor
     implementation 'org.springframework.ai:spring-ai-advisors-vector-store'
+
+    // JdbcChatMemoryRepository 구현체 의존성
+    implementation 'org.springframework.ai:spring-ai-starter-model-chat-memory-repository-jdbc'
 }
 
 dependencyManagement {

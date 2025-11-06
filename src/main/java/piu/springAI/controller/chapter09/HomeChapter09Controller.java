@@ -15,4 +15,9 @@ public class HomeChapter09Controller {
 	public String vector() {
 		return "chapter09/vector-home";
 	}
+
+	@GetMapping("/jdbc-home")
+	public String jdbc() {
+		return "chapter09/jdbc-home";
+	}
 }
