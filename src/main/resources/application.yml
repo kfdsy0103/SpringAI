@@ -38,7 +38,7 @@ spring:
           model: text-embedding-3-small
     vectorstore:
       pgvector:
-        initialize-schema: true
+        initialize-schema: false
   mandatory-file-encoding: UTF-8
 
 logging:

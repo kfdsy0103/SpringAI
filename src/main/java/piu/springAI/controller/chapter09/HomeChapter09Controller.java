@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeChapter09Controller {
 
-	@GetMapping("/home")
+	@GetMapping("/in-memory-home")
 	public String home() {
-		return "chapter09/home";
+		return "chapter09/in-memory-home";
+	}
+
+	@GetMapping("/vector-home")
+	public String vector() {
+		return "chapter09/vector-home";
 	}
 }
