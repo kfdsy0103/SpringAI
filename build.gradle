@@ -56,6 +56,9 @@ dependencies {
 
     // HTML
     implementation 'org.springframework.ai:spring-ai-jsoup-document-reader' // HTML
+
+    // QuestionAnswerAdvisor
+    implementation 'org.springframework.ai:spring-ai-advisors-vector-store'
 }
 
 dependencyManagement {

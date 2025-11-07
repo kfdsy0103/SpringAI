@@ -10,4 +10,9 @@ public class HomeChapter10Controller {
 	public String transformedDocuments() {
 		return "chapter10/txt-pdf-word-etl";
 	}
+
+	@GetMapping("/rag")
+	public String rag() {
+		return "chapter10/rag";
+	}
 }
