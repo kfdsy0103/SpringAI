@@ -56,3 +56,4 @@ logging:
           chat:
             client:
               advisor: DEBUG # SimpleLoggerAdvisor
+          tool: DEBUG # tool logging
