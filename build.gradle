@@ -59,6 +59,9 @@ dependencies {
 
     // QuestionAnswerAdvisor
     implementation 'org.springframework.ai:spring-ai-advisors-vector-store'
+
+    // RetrievalAugmentationAdvisor
+    implementation 'org.springframework.ai:spring-ai-rag'
 }
 
 dependencyManagement {

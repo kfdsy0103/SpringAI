@@ -15,4 +15,9 @@ public class HomeChapter10Controller {
 	public String rag() {
 		return "chapter10/rag";
 	}
+
+	@GetMapping("/compression-query-transformer")
+	public String compressionQueryTransformer() {
+		return "chapter10/compression-query-transformer";
+	}
 }
