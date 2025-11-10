@@ -10,4 +10,9 @@ public class HomeChapter11Controller {
 	public String dateTimeTools() {
 		return "chapter11/date-time-tools";
 	}
+
+	@GetMapping("/heating-system-tools")
+	public String heatingSystemTools() {
+		return "chapter11/heating-system-tools";
+	}
 }
