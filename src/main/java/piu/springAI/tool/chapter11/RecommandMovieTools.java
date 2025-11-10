@@ -17,7 +17,8 @@ public class RecommandMovieTools {
 		@ToolParam(description = "사용자 ID") String userId
 	) {
 		// 실제로는 DB에서 조회
-		List<String> movies = List.of("엣지오브투모로우", "투모로우", "아이언맨", "혹성탈출", "타이타닉", "엘리시움");
-		return movies;
+		// List<String> movies = List.of("엣지오브투모로우", "투모로우", "아이언맨", "혹성탈출", "타이타닉", "엘리시움");
+		// return movies;
+		throw new RuntimeException("사용자 ID가 존재하지 않습니다.");
 	}
 }

@@ -20,4 +20,9 @@ public class HomeChapter11Controller {
 	public String recommendMovieTools() {
 		return "chapter11/recommend-movie-tools";
 	}
+
+	@GetMapping("/exception-handling")
+	public String exceptionHandling() {
+		return "chapter11/exception-handling";
+	}
 }

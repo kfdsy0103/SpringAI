@@ -27,4 +27,14 @@ public class RecommandMovieController {
 		String answer = recommandMovieService.chat(question);
 		return answer;
 	}
+
+	@PostMapping(
+		value = "/exception-handling",
+		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+		produces = MediaType.TEXT_PLAIN_VALUE
+	)
+	public String exceptionHandling(@RequestParam("question") String question) {
+		String answer = recommandMovieService.chatException(question);
+		return answer;
+	}
 }

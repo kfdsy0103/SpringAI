@@ -21,7 +21,23 @@ public class RecommandMovieService {
 			.tools(recommandMovieTools)
 			.call()
 			.content();
-		
+
+		return answer;
+	}
+
+	public String chatException(String question) {
+		String answer = chatClient.prompt()
+			.user("""
+				질문에 대해 답변해주세요.
+				사용자 ID가 존재하지 않는 경우, 진행을 멈추고
+				'[LLM] 질문을 처리할 수 없습니다.'라고 답변해 주세요.
+				
+				질문: %s
+				""".formatted(question))
+			.tools(recommandMovieTools)
+			.call()
+			.content();
+
 		return answer;
 	}
 }
