@@ -7,6 +7,7 @@ import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor;
 import org.springframework.ai.rag.preretrieval.query.transformation.CompressionQueryTransformer;
+import org.springframework.ai.rag.preretrieval.query.transformation.RewriteQueryTransformer;
 import org.springframework.ai.rag.retrieval.search.VectorStoreDocumentRetriever;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.ai.vectorstore.filter.FilterExpressionBuilder;
@@ -60,6 +61,20 @@ public class RAGService2 {
 		return answer;
 	}
 
+	public String chatWithRewriteQuery(String question, double score, String source) {
+		RetrievalAugmentationAdvisor retrievalAugmentationAdvisor = RetrievalAugmentationAdvisor.builder()
+			.queryTransformers(createRewriteQueryTransformer())
+			.documentRetriever(createVectorStoreDocumentRetriever(score, source))
+			.build();
+
+		String answer = chatClient.prompt()
+			.user(question)
+			.advisors(retrievalAugmentationAdvisor)
+			.call()
+			.content();
+		return answer;
+	}
+
 	// 따로 빈으로 빼도 좋겠다.
 	// 원래 사용자 질문을 위한 ChatClient X, 별도의 새로운 ChatClient를 사용하여 명확한 질문을 한번 더 함
 	private CompressionQueryTransformer createCompressionQueryTransformer() {
@@ -90,5 +105,19 @@ public class RAGService2 {
 			})
 			.build();
 		return vectorStoreDocumentRetriever;
+	}
+
+	private RewriteQueryTransformer createRewriteQueryTransformer() {
+
+		ChatClient.Builder build = ChatClient.builder(chatModel)
+			.defaultAdvisors(
+				new SimpleLoggerAdvisor(Ordered.LOWEST_PRECEDENCE - 1)
+			);
+
+		RewriteQueryTransformer rewriteQueryTransformer = RewriteQueryTransformer.builder()
+			.chatClientBuilder(build)
+			.build();
+
+		return rewriteQueryTransformer;
 	}
 }
