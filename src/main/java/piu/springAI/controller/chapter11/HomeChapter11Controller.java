@@ -15,4 +15,9 @@ public class HomeChapter11Controller {
 	public String heatingSystemTools() {
 		return "chapter11/heating-system-tools";
 	}
+
+	@GetMapping("/recommend-movie-tools")
+	public String recommendMovieTools() {
+		return "chapter11/recommend-movie-tools";
+	}
 }
