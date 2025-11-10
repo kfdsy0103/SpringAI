@@ -8,6 +8,7 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor;
 import org.springframework.ai.rag.preretrieval.query.transformation.CompressionQueryTransformer;
 import org.springframework.ai.rag.preretrieval.query.transformation.RewriteQueryTransformer;
+import org.springframework.ai.rag.preretrieval.query.transformation.TranslationQueryTransformer;
 import org.springframework.ai.rag.retrieval.search.VectorStoreDocumentRetriever;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.ai.vectorstore.filter.FilterExpressionBuilder;
@@ -36,6 +37,21 @@ public class RAGService2 {
 		this.chatModel = chatModel;
 		this.vectorStore = vectorStore;
 		this.chatMemory = chatMemory;
+	}
+
+	public String chatWithTranslation(String question, double score, String source) {
+		RetrievalAugmentationAdvisor retrievalAugmentationAdvisor = RetrievalAugmentationAdvisor.builder()
+			.queryTransformers(createTranslationQueryTransformer())
+			.documentRetriever(createVectorStoreDocumentRetriever(score, source))
+			.build();
+
+		String answer = chatClient.prompt()
+			.user(question)
+			.advisors(retrievalAugmentationAdvisor)
+			.call()
+			.content();
+		
+		return answer;
 	}
 
 	public String chatWithCompression(
@@ -119,5 +135,19 @@ public class RAGService2 {
 			.build();
 
 		return rewriteQueryTransformer;
+	}
+
+	private TranslationQueryTransformer createTranslationQueryTransformer() {
+		ChatClient.Builder builder = ChatClient.builder(chatModel)
+			.defaultAdvisors(
+				new SimpleLoggerAdvisor(Ordered.LOWEST_PRECEDENCE - 1)
+			);
+
+		TranslationQueryTransformer translationQueryTransformer = TranslationQueryTransformer.builder()
+			.chatClientBuilder(builder)
+			.targetLanguage("korean")
+			.build();
+
+		return translationQueryTransformer;
 	}
 }
