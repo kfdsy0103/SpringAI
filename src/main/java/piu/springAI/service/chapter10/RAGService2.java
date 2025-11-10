@@ -6,6 +6,7 @@ import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor;
+import org.springframework.ai.rag.preretrieval.query.expansion.MultiQueryExpander;
 import org.springframework.ai.rag.preretrieval.query.transformation.CompressionQueryTransformer;
 import org.springframework.ai.rag.preretrieval.query.transformation.RewriteQueryTransformer;
 import org.springframework.ai.rag.preretrieval.query.transformation.TranslationQueryTransformer;
@@ -50,7 +51,7 @@ public class RAGService2 {
 			.advisors(retrievalAugmentationAdvisor)
 			.call()
 			.content();
-		
+
 		return answer;
 	}
 
@@ -88,6 +89,22 @@ public class RAGService2 {
 			.advisors(retrievalAugmentationAdvisor)
 			.call()
 			.content();
+		return answer;
+	}
+
+	public String chatWithMultiQuery(String question, double score, String source) {
+
+		RetrievalAugmentationAdvisor retrievalAugmentationAdvisor = RetrievalAugmentationAdvisor.builder()
+			.queryExpander(createMultiQueryExpander())
+			.documentRetriever(createVectorStoreDocumentRetriever(score, source))
+			.build();
+
+		String answer = chatClient.prompt()
+			.user(question)
+			.advisors(retrievalAugmentationAdvisor)
+			.call()
+			.content();
+
 		return answer;
 	}
 
@@ -149,5 +166,20 @@ public class RAGService2 {
 			.build();
 
 		return translationQueryTransformer;
+	}
+
+	private MultiQueryExpander createMultiQueryExpander() {
+		ChatClient.Builder builder = ChatClient.builder(chatModel)
+			.defaultAdvisors(
+				new SimpleLoggerAdvisor(Ordered.LOWEST_PRECEDENCE - 1)
+			);
+
+		MultiQueryExpander multiQueryExpander = MultiQueryExpander.builder()
+			.chatClientBuilder(builder)
+			.includeOriginal(true)
+			.numberOfQueries(3)
+			.build();
+
+		return multiQueryExpander;
 	}
 }
